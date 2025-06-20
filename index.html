@@ -6,33 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>test 7</h1>
-  <iframe id="main_page_video_iframe" src="https://rutube.ru/play/embed/427ffe2d5c49f93ee4c8bd3bfec28cd2?p=AfEmfdh8dRXREZZsHms4Vw" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="fullscreen; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  <h1>test 9</h1>
 <!--  <div><button>test</button></div>-->
   <div>time: <span id="span1">0</span></div>
   <div>message: <div id="div1"></div></div>
   <script>
-      let mainPageVideoIframe = document.querySelector('#main_page_video_iframe');
-      let firstTime = true;
-      window.addEventListener('message', function (event) {
-          try {
-              let message = JSON.parse(event.data);
-              if(message.type === 'player:ready' && firstTime){
-                  firstTime = false;
-                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                      type: 'player:mute'
-                  }), '*');
-                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                      type: 'player:pause'
-                  }), '*');
-                  setTimeout(()=>{
-                      mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                          type: 'player:play'
-                      }), '*');
-                  }, 50)
-              }
-          } catch (e) {}
-      })
+      // let mainPageVideoIframe = document.querySelector('#main_page_video_iframe');
+      // let firstTime = true;
+      // window.addEventListener('message', function (event) {
+      //     try {
+      //         let message = JSON.parse(event.data);
+      //         if(message.type === 'player:ready' && firstTime){
+      //             firstTime = false;
+      //             mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //                 type: 'player:mute'
+      //             }), '*');
+      //             mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //                 type: 'player:pause'
+      //             }), '*');
+      //             setTimeout(()=>{
+      //                 mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //                     type: 'player:play'
+      //                 }), '*');
+      //             }, 50)
+      //         }
+      //     } catch (e) {}
+      // })
       // document.querySelector('button').addEventListener('click', () => {
       //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
       //         type: 'player:mute'
