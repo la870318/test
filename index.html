@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>test 1</h1>
+  <h1>test 2</h1>
   <iframe id="main_page_video_iframe" src="https://rutube.ru/play/embed/427ffe2d5c49f93ee4c8bd3bfec28cd2?p=AfEmfdh8dRXREZZsHms4Vw" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="fullscreen; encrypted-media; gyroscope; picture-in-picture"></iframe>
   <script>
       let mainPageVideoIframe = document.querySelector('#main_page_video_iframe');
@@ -16,17 +16,20 @@
               let message = JSON.parse(event.data);
               if(message.type === 'player:currentTime' && firstTime){
                   firstTime = false;
-                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                      type: 'player:mute'
-                  }), '*');
-                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                      type: 'player:pause'
-                  }), '*');
-                  setTimeout(()=>{
+                  setTimeout(() => {
                       mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                          type: 'player:play'
+                          type: 'player:mute'
                       }), '*');
-                  }, 50)
+                      mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+                          type: 'player:pause'
+                      }), '*');
+                      setTimeout(()=>{
+                          mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+                              type: 'player:play'
+                          }), '*');
+                      }, 50)
+                  }, 1000)
+
               }
           } catch (e) {}
       })
