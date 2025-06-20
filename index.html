@@ -8,7 +8,8 @@
 <body>
   <h1>test 3</h1>
   <iframe id="main_page_video_iframe" src="https://rutube.ru/play/embed/427ffe2d5c49f93ee4c8bd3bfec28cd2?p=AfEmfdh8dRXREZZsHms4Vw" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="fullscreen; encrypted-media; gyroscope; picture-in-picture"></iframe>
-  <div><button>test</button></div>
+<!--  <div><button>test</button></div>-->
+  <div>time: <span>0</span></div>
   <script>
       let mainPageVideoIframe = document.querySelector('#main_page_video_iframe');
       let firstTime = true;
@@ -31,7 +32,32 @@
       //         }
       //     } catch (e) {}
       // })
-      document.querySelector('button').addEventListener('click', () => {
+      // document.querySelector('button').addEventListener('click', () => {
+      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //         type: 'player:mute'
+      //     }), '*');
+      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //         type: 'player:pause'
+      //     }), '*');
+      //     setTimeout(()=>{
+      //         mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //             type: 'player:play'
+      //         }), '*');
+      //     }, 50)
+      // })
+
+
+      let params = new URLSearchParams(document.location.search);
+      let x = 0;
+      setInterval( ()=> {
+          x = x + 100;
+          document.querySelector('span').innerHTML = x;
+          if(+params.get('time') === x){
+              testF()
+          }
+      }, 100)
+
+      function testF () {
           mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
               type: 'player:mute'
           }), '*');
@@ -43,7 +69,8 @@
                   type: 'player:play'
               }), '*');
           }, 50)
-      })
+      }
+
   </script>
 
 </body>
