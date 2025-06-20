@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>test 5</h1>
+  <h1>test 7</h1>
   <iframe id="main_page_video_iframe" src="https://rutube.ru/play/embed/427ffe2d5c49f93ee4c8bd3bfec28cd2?p=AfEmfdh8dRXREZZsHms4Vw" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="fullscreen; encrypted-media; gyroscope; picture-in-picture"></iframe>
 <!--  <div><button>test</button></div>-->
   <div>time: <span id="span1">0</span></div>
@@ -14,25 +14,25 @@
   <script>
       let mainPageVideoIframe = document.querySelector('#main_page_video_iframe');
       let firstTime = true;
-      // window.addEventListener('message', function (event) {
-      //     try {
-      //         let message = JSON.parse(event.data);
-      //         if(message.type === 'player:currentTime' && firstTime){
-      //             firstTime = false;
-      //             mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //                 type: 'player:mute'
-      //             }), '*');
-      //             mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //                 type: 'player:pause'
-      //             }), '*');
-      //             setTimeout(()=>{
-      //                 mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //                     type: 'player:play'
-      //                 }), '*');
-      //             }, 50)
-      //         }
-      //     } catch (e) {}
-      // })
+      window.addEventListener('message', function (event) {
+          try {
+              let message = JSON.parse(event.data);
+              if(message.type === 'player:ready' && firstTime){
+                  firstTime = false;
+                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+                      type: 'player:mute'
+                  }), '*');
+                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+                      type: 'player:pause'
+                  }), '*');
+                  setTimeout(()=>{
+                      mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+                          type: 'player:play'
+                      }), '*');
+                  }, 50)
+              }
+          } catch (e) {}
+      })
       // document.querySelector('button').addEventListener('click', () => {
       //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
       //         type: 'player:mute'
@@ -48,43 +48,43 @@
       // })
 
 
-      let params = new URLSearchParams(document.location.search);
-      let x = 0;
-      setInterval( ()=> {
-          x = x + 100;
-          document.querySelector('#span1').innerHTML = x;
-          if(+params.get('time') === x){
-              testF()
-          }
-      }, 100)
-
-      function testF () {
-          mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-              type: 'player:mute'
-          }), '*');
-          mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-              type: 'player:pause'
-          }), '*');
-          setTimeout(()=>{
-              mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                  type: 'player:play'
-              }), '*');
-          }, 50)
-      }
-
-      window.addEventListener('message', function (event) {
-          try {
-              if (x<4000){
-                  let message = JSON.parse(event.data);
-                  if (message.type === 'player:currentTime' && firstTime) {
-                      firstTime = false;
-                      document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - player:currentTime</div>`
-                  } else {
-                      document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - ${message.type}</div>`
-                  }
-            }
-          } catch (e) {}
-      })
+      // let params = new URLSearchParams(document.location.search);
+      // let x = 0;
+      // setInterval( ()=> {
+      //     x = x + 100;
+      //     document.querySelector('#span1').innerHTML = x;
+      //     if(+params.get('time') === x){
+      //         testF()
+      //     }
+      // }, 100)
+      //
+      // function testF () {
+      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //         type: 'player:mute'
+      //     }), '*');
+      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //         type: 'player:pause'
+      //     }), '*');
+      //     setTimeout(()=>{
+      //         mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+      //             type: 'player:play'
+      //         }), '*');
+      //     }, 50)
+      // }
+      //
+      // window.addEventListener('message', function (event) {
+      //     try {
+      //         if (x<4000){
+      //             let message = JSON.parse(event.data);
+      //             if (message.type === 'player:currentTime' && firstTime) {
+      //                 firstTime = false;
+      //                 document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - player:currentTime</div>`
+      //             } else {
+      //                 document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - ${message.type}</div>`
+      //             }
+      //       }
+      //     } catch (e) {}
+      // })
 
   </script>
 
