@@ -7,7 +7,7 @@
 
 </head>
 <body>
-  <h1>test 11</h1>
+  <h1>test 12</h1>
 <!--  <div><button>test</button></div>-->
   <iframe id="main_page_video_iframe" src="https://rutube.ru/play/embed/427ffe2d5c49f93ee4c8bd3bfec28cd2?p=AfEmfdh8dRXREZZsHms4Vw" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="fullscreen; encrypted-media; gyroscope; picture-in-picture"></iframe>
 <!--  <div>time: <span id="span1">0</span></div>-->
@@ -18,7 +18,7 @@
       window.addEventListener('message', function (event) {
           try {
               let message = JSON.parse(event.data);
-              if(message.type === 'player:ready' && firstTime){
+              if(message.type === 'player:ready' ){
                   firstTime = false;
                   mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
                       type: 'player:mute'
@@ -53,7 +53,7 @@
       let x = 0;
       setInterval( ()=> {
           x = x + 100;
-          document.querySelector('#span1').innerHTML = x;
+          // document.querySelector('#span1').innerHTML = x;
           // if(+params.get('time') === x){
               // testF()
           // }
@@ -77,11 +77,8 @@
           try {
               // if (x<4000){
                   let message = JSON.parse(event.data);
-                  if (message.type === 'player:currentTime') {
-                      // firstTime = false;
-                      // document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - player:currentTime</div>`
-                  } else {
-                      document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - ${message.type}</div>`
+                  if (message.type === 'player:changeState') {
+                      document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - ${message.type} -  ${message.data.status ? message.data.status : ''}</div>`
                   }
             // }
           } catch (e) {}
