@@ -32,6 +32,11 @@
                       }), '*');
                   }, 50)
               }
+              if(message.data.status === 'pause') {
+                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
+                      type: 'player:play'
+                  }), '*');
+              }
           } catch (e) {}
       })
       // document.querySelector('button').addEventListener('click', () => {
