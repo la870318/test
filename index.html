@@ -4,92 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta property="og:image" content="https://tnt-online.ru/images/share_logo_tnt.jpg?v=2">
 </head>
 <body>
-  <h1>test 12</h1>
-<!--  <div><button>test</button></div>-->
-  <iframe id="main_page_video_iframe" src="https://rutube.ru/play/embed/427ffe2d5c49f93ee4c8bd3bfec28cd2?p=AfEmfdh8dRXREZZsHms4Vw" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="fullscreen; encrypted-media; gyroscope; picture-in-picture"></iframe>
-<!--  <div>time: <span id="span1">0</span></div>-->
-  <div>message: <div id="div1"></div></div>
-  <script>
-      let mainPageVideoIframe = document.querySelector('#main_page_video_iframe');
-      let firstTime = true;
-      window.addEventListener('message', function (event) {
-          try {
-              let message = JSON.parse(event.data);
-              if(message.type === 'player:ready' ){
-                  firstTime = false;
-                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                      type: 'player:mute'
-                  }), '*');
-                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                      type: 'player:pause'
-                  }), '*');
-                  setTimeout(()=>{
-                      mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                          type: 'player:play'
-                      }), '*');
-                  }, 50)
-              }
-              if(message.data.status === 'pause') {
-                  mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-                      type: 'player:play'
-                  }), '*');
-              }
-          } catch (e) {}
-      })
-      // document.querySelector('button').addEventListener('click', () => {
-      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //         type: 'player:mute'
-      //     }), '*');
-      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //         type: 'player:pause'
-      //     }), '*');
-      //     setTimeout(()=>{
-      //         mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //             type: 'player:play'
-      //         }), '*');
-      //     }, 50)
-      // })
+  <h1>test 14</h1>
 
-
-      // let params = new URLSearchParams(document.location.search);
-      let x = 0;
-      setInterval( ()=> {
-          x = x + 100;
-          // document.querySelector('#span1').innerHTML = x;
-          // if(+params.get('time') === x){
-              // testF()
-          // }
-      }, 100)
-      //
-      // function testF () {
-      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //         type: 'player:mute'
-      //     }), '*');
-      //     mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //         type: 'player:pause'
-      //     }), '*');
-      //     setTimeout(()=>{
-      //         mainPageVideoIframe.contentWindow.postMessage(JSON.stringify({
-      //             type: 'player:play'
-      //         }), '*');
-      //     }, 50)
-      // }
-      //
-      window.addEventListener('message', function (event) {
-          try {
-              // if (x<4000){
-                  let message = JSON.parse(event.data);
-                  if (message.type === 'player:changeState') {
-                      document.querySelector('#div1').innerHTML = document.querySelector('#div1').innerHTML + `<div>${x} - ${message.type} -  ${message.data.status ? message.data.status : ''}</div>`
-                  }
-            // }
-          } catch (e) {}
-      })
-
-  </script>
 
 </body>
 </html>
