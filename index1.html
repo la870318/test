@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div>
+  <input type="text">
+  <button>test</button>
+</div>
+<div>
+  <iframe src="https://la870318.github.io/test"></iframe>
+</div>
+
+
+<script>
+  document.querySelector('button').addEventListener('click', () => {
+    let test = document.querySelector('input').value;
+    testFun(test)
+    function testFun (t) {
+      eval(t);
+    }
+  })
+
+</script>
+</body>
+</html>
